@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Payment</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff3e0;
+      text-align: center;
+      padding: 20px;
+    }
+    .container {
+      background: white;
+      max-width: 400px;
+      margin: auto;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #999;
+    }
+    h2 {
+      color: #ff6600;
+    }
+    .info {
+      margin: 20px 0;
+      font-size: 18px;
+    }
+    .info strong {
+      color: green;
+    }
+    button {
+      background: #28a745;
+      color: white;
+      padding: 10px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Send Payment</h2>
+    <div class="info">
+      Bkash Number: <strong>01621576390</strong><br>
+      Amount: <strong id="amount">Loading...</strong>
+    </div>
+    <button onclick="confirmPayment()">I Have Paid</button>
+  </div>
+
+  <script>
+    const diamond = localStorage.getItem("diamond");
+    let amount = "";
+
+    switch (diamond) {
+      case "2000": amount = "৳200"; break;
+      case "5000": amount = "৳450"; break;
+      case "10000": amount = "৳800"; break;
+      case "20000": amount = "৳1500"; break;
+      case "50000": amount = "৳3500"; break;
+      default: amount = "Unknown";
+    }
+
+    document.getElementById("amount").innerText = amount;
+
+    function confirmPayment() {
+      setTimeout(() => {
+        window.location.href = "success.html";
+      }, 10000); // 10 seconds delay
+    }
+  </script>
+</body>
+</html>
