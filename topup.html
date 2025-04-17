@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Free Fire Top-Up</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      text-align: center;
+      padding: 20px;
+    }
+    .box {
+      background: white;
+      max-width: 400px;
+      margin: auto;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #aaa;
+    }
+    h2 {
+      color: #FFD700;
+      margin-top: 0;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    #takaDisplay {
+      font-weight: bold;
+      color: green;
+      margin-bottom: 10px;
+    }
+    button {
+      background: #ff6600;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>Free Fire Diamond Top-Up</h2>
+    <input type="text" id="uid" placeholder="Enter Free Fire UID" />
+    <select id="diamond" onchange="showTaka()">
+      <option value="">Select Diamond Package</option>
+      <option value="2000">2,000 Diamonds</option>
+      <option value="5000">5,000 Diamonds</option>
+      <option value="10000">10,000 Diamonds</option>
+      <option value="20000">20,000 Diamonds</option>
+      <option value="50000">50,000 Diamonds</option>
+    </select>
+    <div id="takaDisplay"></div>
+    <button onclick="topUp()">Top Up Now</button>
+  </div>
+
+  <script>
+    function showTaka() {
+      const diamond = document.getElementById("diamond").value;
+      let taka = "";
+      switch(diamond) {
+        case "2000": taka = "৳200"; break;
+        case "5000": taka = "৳450"; break;
+        case "10000": taka = "৳800"; break;
+        case "20000": taka = "৳1500"; break;
+        case "50000": taka = "৳3500"; break;
+        default: taka = "";
+      }
+      document.getElementById("takaDisplay").innerText = taka ? `Amount: ${taka}` : "";
+    }
+
+    function topUp() {
+      const uid = document.getElementById("uid").value;
+      const diamond = document.getElementById("diamond").value;
+      if (uid && diamond) {
+        localStorage.setItem("diamond", diamond);
+        setTimeout(() => {
+          window.location.href = "payment.html";
+        }, 10000); // 10 seconds delay
+      } else {
+        alert("Please enter UID and select diamond package.");
+      }
+    }
+  </script>
+</body>
+</html>
